@@ -1,0 +1,20 @@
+@startuml
+title URL检测时序图
+
+actor Client as "前端页面"
+participant API as "Django后端"
+participant Engine as "检测引擎"
+database DB as "SQLite数据库"
+
+Client -> API: POST /api/detection/detect-url/
+note right: {"url": "https://phishing.example.com"}
+API -> DB: 查询钓鱼特征库
+DB --> API: 返回所有URL特征
+API -> Engine: 执行特征匹配
+Engine -> Engine: 计算置信度
+Engine --> API: 返回检测结果
+API -> DB: 保存检测记录
+DB --> API: 保存成功
+API --> Client: 200 OK
+
+@enduml

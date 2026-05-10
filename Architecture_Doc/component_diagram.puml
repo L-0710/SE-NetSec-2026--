@@ -1,0 +1,38 @@
+@startuml
+title 模块划分图
+
+package "前端模块" as Frontend {
+    [登录页面] as Login
+    [仪表盘] as Dashboard
+    [URL检测] as UrlDetection
+    [邮件分析] as EmailAnalysis
+    [宣教演练] as Training
+    [统计报表] as Reports
+    [安全知识库] as KnowledgeBase
+    [用户管理] as UserManagement
+}
+
+package "后端模块" as Backend {
+    package "user应用" as UserApp {
+        [用户认证] as Auth
+        [用户管理] as UserCRUD
+    }
+    package "detection应用" as DetectionApp {
+        [URL检测引擎] as UrlEngine
+        [邮件分析引擎] as EmailEngine
+        [钓鱼特征库] as Features
+    }
+    package "api应用" as ApiApp {
+        [公共API接口] as Api
+    }
+}
+
+database "SQLite" as DB
+
+Frontend --> Backend
+UserApp --> DB
+DetectionApp --> DB
+ApiApp --> UserApp
+ApiApp --> DetectionApp
+
+@enduml

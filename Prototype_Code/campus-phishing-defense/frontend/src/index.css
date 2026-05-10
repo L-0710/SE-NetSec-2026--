@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* 自定义样式 */
+.ant-layout {
+  min-height: 100vh;
+}
+
+.ant-layout-sider {
+  background-color: #1890ff;
+  width: 220px !important;
+  flex: 0 0 220px !important;
+  max-width: 220px !important;
+  min-width: 220px !important;
+}
+
+.ant-layout-sider .ant-menu {
+  background-color: #1890ff;
+  color: white;
+  border-right: 0;
+}
+
+.ant-layout-sider .ant-menu-item {
+  color: white;
+  height: 48px;
+  line-height: 48px;
+  margin: 0;
+  border-radius: 0;
+}
+
+.ant-layout-sider .ant-menu-item:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.ant-layout-sider .ant-menu-item-selected {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-weight: 500;
+}
+
+.ant-layout-sider .ant-menu-item-selected::after {
+  border-right: 3px solid white;
+}
+
+.ant-layout-header {
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 64px;
+}
+
+.ant-layout-content {
+  padding: 24px;
+  background-color: #f0f2f5;
+  min-height: calc(100vh - 64px);
+}
+
+/* Logo 样式 */
+.logo {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+}
+
+.logo-title {
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.logo-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+/* 头部右侧 */
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-info {
+  margin-right: 16px;
+}
+
+/* 卡片样式 */
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* 统计卡片 */
+.stat-card {
+  text-align: center;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 表单样式 */
+.form-item {
+  margin-bottom: 16px;
+}
+
+/* 表格样式 */
+.table-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  margin-bottom: 24px;
+}
+
+/* 按钮样式 */
+.primary-button {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.primary-button:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+/* 加载状态 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* 空状态 */
+.empty-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: #999;
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  color: #d9d9d9;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .ant-layout-sider {
+    width: 180px !important;
+    flex: 0 0 180px !important;
+    max-width: 180px !important;
+    min-width: 180px !important;
+  }
+  
+  .ant-layout {
+    margin-left: 180px !important;
+  }
+  
+  .ant-layout-content {
+    padding: 16px;
+  }
+  
+  .stat-card {
+    padding: 16px;
+  }
+  
+  .logo {
+    padding: 12px 16px;
+  }
+  
+  .logo-title {
+    font-size: 14px;
+  }
+  
+  .ant-layout-header {
+    padding: 0 16px;
+  }
+  
+  .header-title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ant-layout-sider {
+    width: 150px !important;
+    flex: 0 0 150px !important;
+    max-width: 150px !important;
+    min-width: 150px !important;
+  }
+  
+  .ant-layout {
+    margin-left: 150px !important;
+  }
+  
+  .logo-title {
+    font-size: 12px;
+  }
+  
+  .logo-subtitle {
+    font-size: 10px;
+  }
+  
+  .ant-layout-header {
+    padding: 0 12px;
+  }
+  
+  .header-title {
+    font-size: 14px;
+  }
+  
+  .ant-layout-content {
+    padding: 12px;
+  }
+}

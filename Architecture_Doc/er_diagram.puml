@@ -1,0 +1,73 @@
+@startuml
+title 校园钓鱼防御平台 - 实体关系图
+
+' 实体定义
+entity "User\n(用户)" as User {
+    * id: INTEGER <<PK>>
+    --
+    * username: VARCHAR(150) <<UK>>
+    * email: VARCHAR(254) <<UK>>
+    * password: VARCHAR(128)
+    - role: VARCHAR(20)
+    - is_active: BOOLEAN
+    - last_login: DATETIME
+}
+
+entity "URLDetection\n(URL检测记录)" as URLDetection {
+    * id: INTEGER <<PK>>
+    --
+    * url: VARCHAR(2048)
+    - is_phishing: BOOLEAN
+    - confidence: FLOAT
+    * detection_time: DATETIME
+    - user_id: INTEGER <<FK>>
+}
+
+entity "EmailAnalysis\n(邮件分析记录)" as EmailAnalysis {
+    * id: INTEGER <<PK>>
+    --
+    * email_header: TEXT
+    - is_phishing: BOOLEAN
+    - confidence: FLOAT
+    * analysis_time: DATETIME
+    - user_id: INTEGER <<FK>>
+}
+
+entity "PhishingFeature\n(钓鱼特征库)" as PhishingFeature {
+    * id: INTEGER <<PK>>
+    --
+    * feature_type: VARCHAR(20)
+    * pattern: VARCHAR(512)
+    - description: VARCHAR(512)
+    - severity: INTEGER
+}
+
+' 关系定义
+User ||--o{ URLDetection : "1:N\n发起检测"
+User ||--o{ EmailAnalysis : "1:N\n发起分析"
+
+note bottom of User
+  用户实体
+  - 继承 Django AbstractUser
+  - 角色：admin/teacher/student
+end note
+
+note bottom of URLDetection
+  URL检测记录实体
+  - 记录用户的URL检测历史
+  - confidence: 检测置信度(0-1)
+end note
+
+note bottom of EmailAnalysis
+  邮件分析记录实体
+  - 记录用户的邮件分析历史
+  - confidence: 分析置信度(0-1)
+end note
+
+note bottom of PhishingFeature
+  钓鱼特征库实体
+  - feature_type: url/email
+  - severity: 1-5(严重程度)
+end note
+
+@enduml

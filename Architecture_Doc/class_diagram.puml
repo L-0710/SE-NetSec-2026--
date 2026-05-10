@@ -1,0 +1,45 @@
+@startuml
+title 校园钓鱼防御平台 - 核心类图
+
+class User {
+    +id: int
+    +username: string
+    +email: string
+    +password: string
+    +role: enum
+    +is_active: boolean
+    +last_login: datetime
+}
+
+class URLDetection {
+    +id: int
+    +url: string
+    +is_phishing: boolean
+    +confidence: float
+    +detection_time: datetime
+    +user: User
+}
+
+class EmailAnalysis {
+    +id: int
+    +email_header: text
+    +is_phishing: boolean
+    +confidence: float
+    +analysis_time: datetime
+    +user: User
+}
+
+class PhishingFeature {
+    +id: int
+    +feature_type: enum
+    +pattern: string
+    +description: string
+    +severity: int
+}
+
+User "1" --> "*" URLDetection : 发起
+User "1" --> "*" EmailAnalysis : 发起
+URLDetection "1" --> "*" PhishingFeature : 匹配
+EmailAnalysis "1" --> "*" PhishingFeature : 匹配
+
+@enduml

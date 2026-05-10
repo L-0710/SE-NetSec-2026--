@@ -1,0 +1,20 @@
+@startuml
+title 系统部署图
+
+actor User as "用户"
+
+cloud "互联网" as Internet
+
+node "Web服务器" as WebServer {
+    component "Nginx" as Nginx
+    component "Django应用" as Django
+}
+
+database "SQLite数据库" as DB
+
+User --> Internet
+Internet --> Nginx
+Nginx --> Django
+Django --> DB
+
+@enduml

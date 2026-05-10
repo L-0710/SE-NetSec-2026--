@@ -1,0 +1,59 @@
+@startuml
+title 校园钓鱼防御平台 - 系统分层架构图
+
+skinparam backgroundColor #FEFEFE
+skinparam handwritten false
+
+' 定义组件样式
+skinparam component {
+    BackgroundColor #E8F4FD
+    BorderColor #2E7DDB
+    ArrowColor #666666
+}
+
+' 表现层
+component "表现层\n(Presentation Layer)" as Presentation {
+    [React 18] as React
+    [Ant Design 5] as Antd
+    [React Router v6] as Router
+    [ECharts 5] as Charts
+    note right: UI交互、页面路由、\n数据可视化、用户交互处理
+}
+
+' 业务逻辑层
+component "业务逻辑层\n(Business Layer)" as Business {
+    [Django 4.2] as Django
+    [DRF 3.14] as DRF
+    [用户认证模块] as Auth
+    [检测引擎模块] as Detection
+    note right: 权限验证、业务规则处理、\n核心算法实现、数据校验
+}
+
+' 数据访问层
+component "数据访问层\n(Data Access Layer)" as DataAccess {
+    [Django ORM] as ORM
+    [查询优化] as QueryOpt
+    [事务管理] as Transaction
+    note right: 封装数据库CRUD操作、\n提供数据持久化接口
+}
+
+' 基础设施层
+component "基础设施层\n(Infrastructure Layer)" as Infrastructure {
+    [SQLite 3] as SQLite
+    [CORS中间件] as CORS
+    [日志系统] as Logging
+    [静态文件服务] as Static
+    note right: 数据存储、跨域支持、\n日志记录、静态文件服务
+}
+
+' 关系连接
+Presentation --> Business : HTTP/HTTPS + JSON\nRESTful API
+Business --> DataAccess : Django ORM API
+DataAccess --> Infrastructure : SQL + SQLite驱动
+
+' 外部用户
+actor 用户 as User
+
+User --> Presentation : 浏览器访问
+
+@enduml
